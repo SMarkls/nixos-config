@@ -1,4 +1,4 @@
-{inputs, pkgs, home-manager, ...}:
+{inputs, pkgs,  ...}:
 
 {
   programs.hyprland = {

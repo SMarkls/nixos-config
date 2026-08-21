@@ -32,15 +32,16 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
             home-manager.users.mark = {
               imports = [
-                ./modules/home.nix
                 ./hosts/rpi5/home.nix
               ];
             };
           }
           ./hosts/rpi5/configuration.nix
-          ./hosts/rpi5/hardware-configuration.nix
         ];
       };
     };
