@@ -1,11 +1,6 @@
 {
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +13,11 @@
     };
 
     yazi.url = "github:sxyazi/yazi";
+
+    nvim-config = {
+      flake = false;
+      url = "github:SMarkls/nvim-config";
+    };
   };
 
   outputs = inputs@{nixpkgs, nixos-hardware, home-manager, hyprland, zen-browser, yazi, ... }: {

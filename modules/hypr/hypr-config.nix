@@ -32,6 +32,7 @@
 
         input = {
           kb_layout = "us,ru";
+          kb_options = "grp:alt_shift_toggle";
           repeat_rate = 50;
           repeat_delay = 200;
           follow_mouse = 1;
@@ -543,6 +544,6 @@
     wl-clipboard
   ];
 
-  xdg.configFile."wofi/config".source = builtins.toString ../wofi/config;
-  xdg.configFile."wofi/style.css".source = builtins.toString ../wofi/style.css;
+  xdg.configFile."wofi/config".source = builtins.toString ./wofi/config;
+  xdg.configFile."wofi/style.css".source = builtins.toString ./wofi/style.css;
 }

@@ -5,8 +5,24 @@
     ./hypr/hypr.nix
     ./zen-browser.nix
     ./bluetooth.nix
+    ./vpn.nix
     ./copro-vpn.nix
   ];
+
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    curl
+    ripgrep
+    inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default
+    remmina
+    freerdp
+    bind
+    neovim
+    v2raya
+    xray
+  ];
+
   programs.zsh.enable = true;
   users.users.mark = {
     shell = pkgs.zsh;
@@ -23,17 +39,7 @@
 
   security.sudo.wheelNeedsPassword = true;
   time.timeZone = "Asia/Yekaterinburg";
-
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-    curl
-    inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default
-    remmina
-    freerdp
-    bind
-  ];
-  environment.variables.EDITOR = "vim";
+  environment.variables.EDITOR = "nvim";
 
   programs.thunar = {
     enable = true;

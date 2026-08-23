@@ -1,8 +1,9 @@
-{pkgs, ...}:
+{inputs, pkgs, ...}:
 
 {
   imports = [
-    ./hypr/hypr-required.nix
+    ./hypr/hypr-config.nix
+    ./nvim.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,6 +30,7 @@
       name = "Марк Исхаков";
     };
   };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
