@@ -4,6 +4,8 @@
   imports = [
     ./hypr/hypr.nix
     ./zen-browser.nix
+    ./bluetooth.nix
+    ./copro-vpn.nix
   ];
   programs.zsh.enable = true;
   users.users.mark = {
@@ -27,8 +29,9 @@
     vim
     curl
     inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default
-    openconnect
     remmina
+    freerdp
+    bind
   ];
   environment.variables.EDITOR = "vim";
 
@@ -49,6 +52,8 @@
   fonts.packages = with pkgs; [
     nerd-fonts.iosevka-term-slab
   ];
+
+  services.resolved.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
