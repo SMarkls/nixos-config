@@ -10,7 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "usbhid" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "i2c-dev" "i2c_bcm2712" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =

@@ -13,6 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     chromium
+    i2c-tools
   ];
   boot.initrd.systemd.tpm2.enable = false;
 
@@ -21,6 +22,30 @@
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
   hardware.i2c.enable = true;
+  hardware.deviceTree.enable = true;
+  hardware.deviceTree.overlays = [
+    {
+      name = "bcm2712-i2c1";
+      # Указываем совместимость с чипом Raspberry Pi 5
+      compatible = [ "brcm,bcm2712" ];
+      # Включаем статус 'okay' для контроллера i2c1
+      dtsText = ''
+        /dts-v1/;
+        /plugin/;
+        / {
+          fragment@0 {
+            target = <&i2c1>;
+            __overlay__ {
+              status = "okay";
+            };
+          };
+        };
+      '';
+    }
+  ];
+  users.users.mark = {
+    extraGroups = ["i2c"];
+  };
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";

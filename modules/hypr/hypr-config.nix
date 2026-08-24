@@ -52,7 +52,7 @@
         {
           _args = [
             "SUPER + B"
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd('zen')")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd('xdg-open https://google.com')")
           ];
         }
         {

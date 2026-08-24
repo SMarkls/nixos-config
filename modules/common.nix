@@ -3,7 +3,6 @@
 {
   imports = [
     ./hypr/hypr.nix
-    ./zen-browser.nix
     ./bluetooth.nix
     ./vpn.nix
     ./copro-vpn.nix
