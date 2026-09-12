@@ -10,6 +10,13 @@
     configType = "lua";
 
     settings = {
+      monitor = {
+        output = "";
+        mode = "preferred";
+        position = "auto";
+        scale = 1;
+      };
+
       config = {
         general = {
           gaps_in = 5;
@@ -205,6 +212,18 @@
         {
           _args = ["SUPER + mouse:273" (lib.generators.mkLuaInline "hl.dsp.window.resize()") (lib.generators.mkLuaInline "{ mouse = true }")];
         }
+        {
+          _args = [
+            "XF86MonBrightnessUp"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl set 5%+\")")
+          ];
+        }
+        {
+          _args = [
+            "XF86MonBrightnessDown"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl set 5%-\")")
+          ];
+        }
       ];
 
       workspace_rule = [
@@ -325,7 +344,7 @@
         };
 
         "pulseaudio" = {
-          format = " {volume}%";
+          format = " {volume}";
           "format-muted" = " Mute";
           "format-icons" = {
             "default" = [""];
@@ -334,21 +353,21 @@
         };
 
         "network" = {
-          "format-wifi" = "";
-          "format-disconnected" = "";
+          "format-wifi" = "󱚽";
+          "format-disconnected" = "";
           "tooltip-format" = "{essid} | {ipaddr}";
-          "on-click" = "kitty --class clipse -e nmtui";
+          "on-click" = "alacritty -e nmtui";
         };
 
         "battery" = {
-          format = " {capacity}%";
-          "format-charging" = " {capacity}%";
-          "format-plugged" = " {capacity}%";
+          format = " {capacity}󰁹";
+          "format-charging" = " {capacity}󰂄";
+          "format-plugged" = " {capacity}󰁹";
           "format-icons" = [""];
         };
 
         "bluetooth" = {
-          format = "bl";
+          format = "󰂯";
           "on-click" = "blueman-manager";
         };
 
@@ -492,8 +511,17 @@
         color: #808080;
       }
 
+      #network {
+        font-size: 16px;
+      }
+
       #network.disconnected {
         color: #808080;
+      }
+
+      #bluetooth,
+      #battery {
+        color: #001960;
       }
 
       #battery.warning {

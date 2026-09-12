@@ -14,7 +14,7 @@
     enable = true;
     settings = {
       font = {
-        size = 16;
+        size = 12;
         normal = {
           family = "IosevkaTermSlabNerdFontPropo";
           style = "Regular";
@@ -44,10 +44,7 @@
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	command rm -f -- "$tmp"
       '';
-    };
-    shellAliases = {
-      py = "python3";
-      nv = "nvim";
+    }; shellAliases = { py = "python3"; nv = "nvim";
     };
     oh-my-zsh = {
       enable = true;

@@ -44,6 +44,28 @@
           ./hosts/rpi5/configuration.nix
         ];
       };
+      laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+            home-manager.users.mark = {
+              imports = [
+                ./hosts/laptop/home.nix
+              ];
+            };
+          }
+          ./hosts/laptop/configuration.nix
+        ];
+      };
     };
   };
 }

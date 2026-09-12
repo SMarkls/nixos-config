@@ -20,6 +20,7 @@
     neovim
     v2raya
     xray
+    telegram-desktop
   ];
 
   programs.zsh.enable = true;

@@ -1,6 +1,9 @@
 {inputs, pkgs,  ...}:
 
 {
+  environment.systemPackages = with pkgs; [
+    brightnessctl
+  ];
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
