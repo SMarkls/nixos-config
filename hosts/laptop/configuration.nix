@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ../../modules/common.nix
     ../../modules/zen-browser.nix
+    ../../modules/virtualisation.nix
   ];
 
   # networking.hostName = "nixos"; # Define your hostname.

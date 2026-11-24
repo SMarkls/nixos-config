@@ -21,6 +21,7 @@
     v2raya
     xray
     telegram-desktop
+    transmission_4-gtk
   ];
 
   programs.zsh.enable = true;
@@ -65,4 +66,8 @@
     "nix-command"
     "flakes"
   ];
+
+  services.transmission = {
+    enable = true;
+  };
 }
