@@ -4,6 +4,7 @@
   imports = [
     ./hypr/hypr-config.nix
     ./nvim.nix
+    ./gtk.nix
   ];
 
   home.packages = with pkgs; [
