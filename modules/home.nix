@@ -1,10 +1,11 @@
-{inputs, pkgs, ...}:
+{ pkgs, ... }:
 
 {
   imports = [
     ./hypr/hypr-config.nix
     ./nvim.nix
     ./gtk.nix
+    ./mime-apps.nix
   ];
 
   home.packages = with pkgs; [
@@ -39,13 +40,16 @@
     syntaxHighlighting.enable = true;
     siteFunctions = {
       n = ''
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d "" cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	command rm -f -- "$tmp"
+        	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        	command yazi "$@" --cwd-file="$tmp"
+        	IFS= read -r -d "" cwd < "$tmp"
+        	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+        	command rm -f -- "$tmp"
       '';
-    }; shellAliases = { py = "python3"; nv = "nvim";
+    };
+    shellAliases = {
+      py = "python3";
+      nv = "nvim";
     };
     oh-my-zsh = {
       enable = true;
@@ -58,4 +62,3 @@
   programs.yazi.enable = true;
   home.stateVersion = "26.05";
 }
-

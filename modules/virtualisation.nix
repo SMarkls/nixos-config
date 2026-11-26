@@ -1,8 +1,8 @@
-{configs, pkgs, ...}: 
+{ pkgs, ... }:
 
 {
   virtualisation.libvirtd = {
-  enable = true;
+    enable = true;
     qemu = {
       package = pkgs.qemu_kvm;
       runAsRoot = true;

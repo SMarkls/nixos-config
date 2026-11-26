@@ -1,14 +1,19 @@
-{pkgs, inputs, lib, ...}:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
     systemd.enable = false;
     configType = "lua";
-
     settings = {
       monitor = {
         output = "";
@@ -105,112 +110,230 @@
           ];
         }
         {
-          _args = ["SUPER + H" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'left' })")];
+          _args = [
+            "SUPER + H"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'left' })")
+          ];
         }
         {
-          _args = ["SUPER + L" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'right' })")];
+          _args = [
+            "SUPER + L"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'right' })")
+          ];
         }
         {
-          _args = ["SUPER + J" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'down' })")];
+          _args = [
+            "SUPER + J"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'down' })")
+          ];
         }
         {
-          _args = ["SUPER + K" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'up' })")];
+          _args = [
+            "SUPER + K"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'up' })")
+          ];
         }
         {
-          _args = ["SUPER + left" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'left' })")];
+          _args = [
+            "SUPER + left"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'left' })")
+          ];
         }
         {
-          _args = ["SUPER + right" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'right' })")];
+          _args = [
+            "SUPER + right"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'right' })")
+          ];
         }
         {
-          _args = ["SUPER + down" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'down' })")];
+          _args = [
+            "SUPER + down"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'down' })")
+          ];
         }
         {
-          _args = ["SUPER + up" (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'up' })")];
+          _args = [
+            "SUPER + up"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ direction = 'up' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + H" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'left' })")];
+          _args = [
+            "SUPER + SHIFT + H"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'left' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + L" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'right' })")];
+          _args = [
+            "SUPER + SHIFT + L"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'right' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + J" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'down' })")];
+          _args = [
+            "SUPER + SHIFT + J"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'down' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + K" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'up' })")];
+          _args = [
+            "SUPER + SHIFT + K"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'up' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + left" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'left' })")];
+          _args = [
+            "SUPER + SHIFT + left"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'left' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + right" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'right' })")];
+          _args = [
+            "SUPER + SHIFT + right"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'right' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + down" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'down' })")];
+          _args = [
+            "SUPER + SHIFT + down"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'down' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + up" (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'up' })")];
+          _args = [
+            "SUPER + SHIFT + up"
+            (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = 'up' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + F" (lib.generators.mkLuaInline "hl.dsp.window.fullscreen()")];
+          _args = [
+            "SUPER + SHIFT + F"
+            (lib.generators.mkLuaInline "hl.dsp.window.fullscreen()")
+          ];
         }
         {
-          _args = ["SUPER + SPACE" (lib.generators.mkLuaInline "hl.dsp.window.float({ action = 'toggle' })")];
+          _args = [
+            "SUPER + SPACE"
+            (lib.generators.mkLuaInline "hl.dsp.window.float({ action = 'toggle' })")
+          ];
         }
         {
-          _args = ["SUPER + 1" (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '1' })")];
+          _args = [
+            "SUPER + 1"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '1' })")
+          ];
         }
         {
-          _args = ["SUPER + 2" (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '2' })")];
+          _args = [
+            "SUPER + 2"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '2' })")
+          ];
         }
         {
-          _args = ["SUPER + 3" (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '3' })")];
+          _args = [
+            "SUPER + 3"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '3' })")
+          ];
         }
         {
-          _args = ["SUPER + 4" (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '4' })")];
+          _args = [
+            "SUPER + 4"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = '4' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + 1" (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '1' })")];
+          _args = [
+            "SUPER + SHIFT + 1"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '1' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + 2" (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '2' })")];
+          _args = [
+            "SUPER + SHIFT + 2"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '2' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + 3" (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '3' })")];
+          _args = [
+            "SUPER + SHIFT + 3"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '3' })")
+          ];
         }
         {
-          _args = ["SUPER + SHIFT + 4" (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '4' })")];
+          _args = [
+            "SUPER + SHIFT + 4"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = '4' })")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + left" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = -50, y = 0, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + left"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = -50, y = 0, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + right" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 50, y = 0, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + right"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 50, y = 0, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + up" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = -50, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + up"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = -50, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + down" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = 50, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + down"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = 50, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + H" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = -50, y = 0, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + H"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = -50, y = 0, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + L" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 50, y = 0, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + L"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 50, y = 0, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + K" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = -50, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + K"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = -50, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + CTRL + J" (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = 50, relative = true })") (lib.generators.mkLuaInline "{ repeating = true }")];
+          _args = [
+            "SUPER + CTRL + J"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = 50, relative = true })")
+            (lib.generators.mkLuaInline "{ repeating = true }")
+          ];
         }
         {
-          _args = ["SUPER + mouse:272" (lib.generators.mkLuaInline "hl.dsp.window.drag()") (lib.generators.mkLuaInline "{ mouse = true }")];
+          _args = [
+            "SUPER + mouse:272"
+            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            (lib.generators.mkLuaInline "{ mouse = true }")
+          ];
         }
         {
-          _args = ["SUPER + mouse:273" (lib.generators.mkLuaInline "hl.dsp.window.resize()") (lib.generators.mkLuaInline "{ mouse = true }")];
+          _args = [
+            "SUPER + mouse:273"
+            (lib.generators.mkLuaInline "hl.dsp.window.resize()")
+            (lib.generators.mkLuaInline "{ mouse = true }")
+          ];
         }
         {
           _args = [
@@ -227,14 +350,21 @@
       ];
 
       workspace_rule = [
-        {workspace = "r[1-4]"; decorate = false; no_rounding = true; gaps_in = 0; gaps_out = 0; border_size = 1;}
+        {
+          workspace = "r[1-4]";
+          decorate = false;
+          no_rounding = true;
+          gaps_in = 0;
+          gaps_out = 0;
+          border_size = 1;
+        }
       ];
 
       window_rule = {
-          match = {
-              class = "^wofi$";
-          };
-          float = true;
+        match = {
+          class = "^wofi$";
+        };
+        float = true;
       };
 
       on = {
@@ -329,7 +459,7 @@
           "on-click" = "activate";
           "on-click-middle" = "close";
           "on-click-right" = "minimize-raise";
-          "app_ids-mapping" = {};
+          "app_ids-mapping" = { };
         };
 
         "tray" = {
@@ -347,7 +477,7 @@
           format = " {volume}";
           "format-muted" = " Mute";
           "format-icons" = {
-            "default" = [""];
+            "default" = [ "" ];
           };
           "on-click" = "pavucontrol";
         };
@@ -363,7 +493,7 @@
           format = " {capacity}󰁹";
           "format-charging" = " {capacity}󰂄";
           "format-plugged" = " {capacity}󰁹";
-          "format-icons" = [""];
+          "format-icons" = [ "" ];
         };
 
         "bluetooth" = {

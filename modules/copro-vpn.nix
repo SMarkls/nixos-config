@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 let
   vpncScriptWithDnsRoutes = pkgs.writeShellScript "vpnc-script-with-dns-routes" ''
     ${pkgs.vpnc-scripts}/bin/vpnc-script

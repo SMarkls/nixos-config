@@ -1,4 +1,8 @@
-{ inputs, pkgs, yazi, ...}:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -6,6 +10,7 @@
     ./bluetooth.nix
     ./vpn.nix
     ./copro-vpn.nix
+    ./rust.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -22,6 +27,7 @@
     xray
     telegram-desktop
     transmission_4-gtk
+    qview
   ];
 
   programs.zsh.enable = true;
@@ -37,6 +43,7 @@
     ];
     initialPassword = "123456";
   };
+  users.mutableUsers = true;
 
   security.sudo.wheelNeedsPassword = true;
   time.timeZone = "Asia/Yekaterinburg";
@@ -44,7 +51,7 @@
 
   programs.thunar = {
     enable = true;
-    plugins =   with pkgs; [
+    plugins = with pkgs; [
       xfce4-exo
       thunar-archive-plugin
       thunar-volman
