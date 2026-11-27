@@ -28,6 +28,7 @@
     telegram-desktop
     transmission_4-gtk
     qview
+    codex
   ];
 
   programs.zsh.enable = true;

@@ -4,6 +4,7 @@
 
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -14,11 +15,14 @@
   imports = [
     ../../modules/common.nix
     ./hardware-configuration.nix
+    ./fan.nix
   ];
 
   environment.systemPackages = with pkgs; [
     chromium
     i2c-tools
+    dtc
+    libgpiod
   ];
   boot.initrd.systemd.tpm2.enable = false;
 
@@ -26,24 +30,40 @@
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
+  boot.kernelPackages =
+    let
+      # Use the toolchain revision that built this vendor kernel successfully.
+      kernelPkgs = inputs.rpi5-kernel-nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+      tag = "stable_20260609";
+    in
+    kernelPkgs.linuxPackagesFor (kernelPkgs.callPackage "${inputs.nixos-hardware}/raspberry-pi/common/kernel.nix" {
+      rpiVersion = 5;
+      argsOverride = rec {
+        modDirVersion = "6.18.34";
+        version = "${modDirVersion}-${tag}";
+        src = kernelPkgs.fetchFromGitHub {
+          owner = "raspberrypi";
+          repo = "linux";
+          inherit tag;
+          hash = "sha256-ok++36dh9o4e7AC5RErW00/r23rGxufe0PYXz5Dzy5U=";
+        };
+      };
+    });
   hardware.i2c.enable = true;
   hardware.deviceTree.enable = true;
   hardware.deviceTree.overlays = [
     {
-      name = "bcm2712-i2c1";
-      # Указываем совместимость с чипом Raspberry Pi 5
-      compatible = [ "brcm,bcm2712" ];
-      # Включаем статус 'okay' для контроллера i2c1
+      name = "rpi5-i2c-arm";
       dtsText = ''
         /dts-v1/;
         /plugin/;
+
         / {
-          fragment@0 {
-            target = <&i2c1>;
-            __overlay__ {
-              status = "okay";
-            };
-          };
+          compatible = "raspberrypi,5-model-b";
+        };
+
+        &i2c_arm {
+          status = "okay";
         };
       '';
     }
@@ -94,9 +114,7 @@
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   #   packages = with pkgs; [
   #     tree
-  #   ];
-  # };
-
+  #   ]; };
   # programs.firefox.enable = true;
 
   # List packages installed in system profile.

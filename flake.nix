@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rpi5-kernel-nixpkgs.url = "github:NixOS/nixpkgs/b7c2ada94fe99c15b0dbcf4d11fd7850b957a436";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +29,7 @@
           inherit inputs;
         };
         modules = [
+          nixos-hardware.nixosModules.raspberry-pi-5
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
